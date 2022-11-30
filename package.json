@@ -6,13 +6,16 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "start": "hexo server"
   },
   "hexo": {
     "version": "6.3.0"
   },
   "dependencies": {
+    "browser-sync": "^2.27.10",
+    "connect-injector": "^0.4.4",
     "hexo": "^6.3.0",
+    "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^3.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
