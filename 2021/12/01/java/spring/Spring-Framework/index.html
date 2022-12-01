@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"david-ni.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Spring 框架模块介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring 框架模块">
+<meta property="og:url" content="https://david-ni.github.io/2021/12/01/java/spring/Spring-Framework/index.html">
+<meta property="og:site_name" content="Dn&#39;s Blog">
+<meta property="og:description" content="Spring 框架模块介绍">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/7795335/100718377-3b9c4300-33f6-11eb-89aa-03a8bab64373.png">
+<meta property="article:published_time" content="2021-12-01T13:40:04.674Z">
+<meta property="article:modified_time" content="2022-12-01T13:50:58.498Z">
+<meta property="article:author" content="dn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/7795335/100718377-3b9c4300-33f6-11eb-89aa-03a8bab64373.png">
+
+<link rel="canonical" href="https://david-ni.github.io/2021/12/01/java/spring/Spring-Framework/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Spring 框架模块 | Dn's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dn's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://david-ni.github.io/2021/12/01/java/spring/Spring-Framework/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="dn">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dn's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring 框架模块
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-01 21:40:04" itemprop="dateCreated datePublished" datetime="2021-12-01T21:40:04+08:00">2021-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-01 21:50:58" itemprop="dateModified" datetime="2022-12-01T21:50:58+08:00">2022-12-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Spring 框架模块介绍</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Spring Framework 大概由20个模块组成:</p>
+<p><img src="https://user-images.githubusercontent.com/7795335/100718377-3b9c4300-33f6-11eb-89aa-03a8bab64373.png" alt="spring-module-1"></p>
+<h3 id="Core-Container"><a href="#Core-Container" class="headerlink" title="Core Container"></a>Core Container</h3><p>Core Container 由<code>spring-core</code>,<code>spring-beans</code>,<code>spring-context</code>,<code>spring-context-support</code>,<code>spring-expression</code>(Spring expression language)模块组成。</p>
+<ul>
+<li><p><code>spring-core</code>和<code>spring-beans</code>提供了IOC和DI的实现，是整个框架的基础。</p>
+</li>
+<li><p><code>spring-context</code>:它提供一个框架式的对象访问方式，类似于一个<code>JNDI</code>注册表。上下文模块从<code>Beans</code>模块继承其功能，并添加支持国际化（使用，例如，资源集合），事件传播，资源负载，并且透明创建上下文，例如，<code>Servlet</code>容器。<code>Context</code>模块还支持<code>Java EE</code>的功能，如<code>EJB，JMX</code>和基本的远程处理。<code>ApplicationContext</code>接口是<code>Context</code>模块的焦点。 <code>spring-context-support</code>支持整合普通第三方库到<code>Spring</code>应用程序上下文，特别是用于高速缓存（<code>ehcache</code>，<code>JCache</code>）和调度（<code>CommonJ</code>，<code>Quartz</code>）的支持。</p>
+</li>
+<li><p><code>spring-expression</code>: Spring 表达式语言</p>
+</li>
+</ul>
+<h3 id="Aop"><a href="#Aop" class="headerlink" title="Aop"></a>Aop</h3><p>提供了切面编程方面的支持，由<code>spring-aop</code>、<code>spring-aspects</code>、<code>spring-instrument</code>组成</p>
+<ul>
+<li><p><code>spring-aop</code>: 提供Aop（切面编程）的支持</p>
+</li>
+<li><p><code>spring-aspects</code>: 整合了<code>AspectJ</code></p>
+</li>
+</ul>
+<h3 id="Messaging"><a href="#Messaging" class="headerlink" title="Messaging"></a>Messaging</h3><ul>
+<li><code>spring-messaging</code>: Spring 4及以后新增，它提供了对消息传递体系结构和协议的支持</li>
+</ul>
+<h3 id="Data-Access-x2F-Integration"><a href="#Data-Access-x2F-Integration" class="headerlink" title="Data Access&#x2F;Integration"></a>Data Access&#x2F;Integration</h3><p>包括JDBC、ORM、OXM、JMS和Transactions模块：</p>
+<ul>
+<li><p><code>spring-jdbc</code>: java jdbc的封装</p>
+</li>
+<li><p><code>spring-tx</code>: 提供事务支持</p>
+</li>
+<li><p><code>spring-orm</code>: 流行的对象关系映射<code>(object-relational mapping )API</code>提供集成层，包括<code>JPA</code>和<code>Hibernate</code></p>
+</li>
+<li><p><code>spring-oxm</code>: 提供了一个支持<code>对象/ XML</code>映射实现的抽象层，如<code>JAXB</code>、<code>Castor</code>、<code>JiBX</code>和<code>XStream</code></p>
+</li>
+<li><p><code>spring-jms</code>: 包含用于生产和消费消息的功能。自Spring Framework 4.1以来，它提供了与<code>spring-messaging</code>模块的集成</p>
+</li>
+</ul>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><p>由<code>spring-web</code>，<code>spring-webmvc</code>和<code>spring-websocket</code>模块组成：</p>
+<ul>
+<li><p><code>spring-web</code>模块提供基本的面向Web的集成功能，例如多部分文件上传功能，以及初始化一个使用了<code>Servlet</code>侦听器和面向<code>Web</code>的应用程序上下文的<code>IoC</code>容器。它还包含一个<code>HTTP</code>客户端和<code>Spring</code>的远程支持的<code>Web</code>相关部分。</p>
+</li>
+<li><p><code>spring-webmvc</code>模块（也称为<code>Web-Servlet</code>模块）包含用于<code>Web</code>应用程序的<code>Spring</code>的模型-视图-控制器(MVC)和<code>REST Web Services</code>实现。 Spring的MVC框架提供了领域模型代码和Web表单之间的清晰分离，并与Spring Framework的所有其他功能集成。</p>
+</li>
+</ul>
+<h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><ul>
+<li><code>spring-test</code>: spring 测试模块</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/01/java/spring-cloud/cloud-hystrix/" rel="prev" title="熔断器">
+      <i class="fa fa-chevron-left"></i> 熔断器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/01/java/spring/Spring-Aop/" rel="next" title="Spring Aop">
+      Spring Aop <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-Container"><span class="nav-number">1.</span> <span class="nav-text">Core Container</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Aop"><span class="nav-number">2.</span> <span class="nav-text">Aop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Messaging"><span class="nav-number">3.</span> <span class="nav-text">Messaging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Access-x2F-Integration"><span class="nav-number">4.</span> <span class="nav-text">Data Access&#x2F;Integration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web"><span class="nav-number">5.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test"><span class="nav-number">6.</span> <span class="nav-text">Test</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">dn</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dn</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
