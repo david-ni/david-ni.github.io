@@ -817,7 +817,7 @@ package packageName;
 
 ## Java异常
 
-<img src="./Assets/java-exception.png" alt="Java Exception" style="zoom:50%;" />
+![image](/images/java/java-exception.png)
 
 所有的异常都是由`Throwable`继承而来的，异常可以分为两类：`Error`和`Exception`。
 
@@ -954,6 +954,21 @@ public class Car{}
 public class SUV extends Car{
 }
 ```
+
+## 日期与时间API
+
+Java 1.0时`Date`类是处理时间的主力，但事后证明它过于简单，当Java 1.1引入`Calendar`类之后，`Date`类中的大部分方法被弃用，但是`Calendar`类还不够给力，它的实例是易变的，而且没有处理诸如闰秒之类的问题。在Java 8后随着java.time Api的引入，它修正了过去的缺陷。
+
+| 类                  | 描述                     |      |
+| ------------------- | ------------------------ | ---- |
+| `Instant`           |                          |      |
+| `Duration`          |                          |      |
+| `LocalDate`         | 有年、月、日的本地日期   |      |
+| `LocalTime`         | 表示时刻，例如：15:30:00 |      |
+| `LocalDateTime`     | 表示日期和时刻           |      |
+| `DateTimeFormatter` | 日期格式化               |      |
+
+
 
 ## `System.getProperty()` vs `System.getenv()`
 
