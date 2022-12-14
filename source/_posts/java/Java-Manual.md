@@ -1,23 +1,15 @@
 ---
-title: Java Manual
-description: 初学Java时整理的笔记
+title: Java 入门手册
+description: 万丈高楼平地起，带你敲开Java的大门...
 categories: 
 - Java
 ---
 
 ## 名词解释
 
-### Java POJO 和 Java Bean
+### JDK VS JRE
 
-`Java POJO`：简单Java类，这个类没有实现/继承任何特殊的java接口或者类，不遵循任何主要java模型，约定或者框架的java对象以及不应该有注解。
-
-`Java Bean`:  是可序列化的，实现了serializable接口；具有一个无参构造器； 属性具有getter和setter方法；
-
-> [Difference between DTO, VO, POJO, JavaBeans?](https://stackoverflow.com/questions/1612334/difference-between-dto-vo-pojo-javabeans)
-
-### Ant vs Maven vs Gradle
-
-[Ant vs Maven vs Gradle](https://www.baeldung.com/ant-maven-gradle)
+我们把Java程序设计语言、Java虚拟机、Java类库这三个部分统称为`JDK(Java Development Kit)`，**JDK是用于支持Java程序开发的最小环境**；可以把Java SE API的子集和Java 虚拟机这两部分统称为`JRE(Java Runtime Environment)`，**JRE是支持Java程序运行的标准环境**
 
 ##  Java 数据类型
 
