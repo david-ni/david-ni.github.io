@@ -52,7 +52,7 @@ C++ 规定标识符由`英文字母`、`数字`和`_`组成，需要注意的是
 
 使用 `using` 指令不一定会导致错误，但可能会导致问题，因为它将命名空间引入每个直接或间接包含该标头的 .cpp 文件中的范围
 
-### 临时对象
+### 临时对象[todo]
 
 >  Todo
 
@@ -157,19 +157,137 @@ p = &n; // 把n的地址赋给p
 
 在👆的例子中，`p`表示的是一个地址，`*p`表示存在在该地址的具体值，也就是`n`的值`1`
 
+#### 智能指针[todo]
 
-
-#### 智能指针
+> Todo
 
 ### 数组
 
-### 字符串
+数组是一种数据格式，能够存储多个同类型的值，它们占据一块连续的内存区。
+
+#### 数组的声明
+
+- 堆栈声明
+
+  格式：`typeName` `arrayName[arraySize]`
+
+  以下示例声明了要在堆栈上分配的 4 个整型的数组，元素数量必须以整数文本或常量表达式的形式提供，这是因为，编译器必须知道要分配多少堆栈空间，它不能使用在运行时计算的值。 
+
+  > ⚠️：
+  >
+  > 1. 如果没有初始化定义数组， 则其元素的值是不确定的。
+  > 2. 只有定义数组的时候才能初始化，以后就不能使用了，也不能将一个数组赋值给另一个数组。
+
+  ```c++
+  int cards[4] = {3,4,5}; // okay
+  int hand[4]; 
+  hand[4] = {3,4,5}; // not allowed
+  hand = cards; // not allowed
+  ```
+
+- 堆声明
+
+  你可能需要一个太大的、以致无法在堆栈上分配的数组，或者需要一个其大小在编译时未知的数组。 可以使用`new`表达式在堆上分配此数组。这时数组的大小将在运行时确定，使用完后 ，应使用`delete[]` 来释放内存
+
+  ```c++
+  void do_something(size_t size)
+  {
+      // Declare an array of doubles to be allocated on the heap
+      double* numbers = new double[size]{ 0 };
+      // ...
+      delete [] numbers;
+  }
+  ```
+
+#### 将数组传递给函数
+
+将数组传递给函数时，该数组将作为指向第一个元素的指针传递，无论它是基于堆栈的数组还是基于堆的数组。 指针不包含其他大小或类型信息。 此行为称为指针衰减。 将数组传递给函数时，始终必须在单独的参数中指定元素数量。 此行为还意味着将数组传递给函数时不会复制数组元素。 若要防止函数修改元素，请将参数指定为指向 **`const`** 元素的指针。
+
+以下示例演示了一个接受数组和长度的函数。 **指针指向原始数组而不是副本**。 由于参数不是 **`const`**，因此该函数可以修改数组元素。
+
+```c++
+void process(double *p, const size_t len)
+{
+    std::cout << "process:\n";
+    for (size_t i = 0; i < len; ++i)
+    {
+        // do something with p[i]
+    }
+}
+```
+
+将数组参数 `p` 声明并定义为 **`const`**，使其在函数块中为只读：
+
+```c++
+void process(const double *p, const size_t len);
+```
+
+也可以用这些方式声明相同的函数，而无需改变行为。 数组仍作为指向第一个元素的指针传递：
+
+```c++
+// Unsized array
+void process(const double p[], const size_t len);
+
+// Fixed-size array. Length must still be specified explicitly.
+void process(const double p[1000], const size_t len);
+```
+
+#### 数组的替代
+
+##### 模版类`vector`
+
+`vector`是一种动态数组，可以在运行阶段设置`vector`的长度，可以在末位添加数据，也可以在中间插入数据等。
+
+```c++
+vector<typeName> vt(size);
+```
+
+使用`vector`时，必须包含头文件`<vector>`，其次，`vector`包含在命名空间`std`中
+
+```c++
+#include <vector>
+using namespace std;
+vector<int> vi; // create a zero-size array of int
+int n;
+cin >> n;
+vector<double> vd(n); // create an array of double; 
+```
+
+##### 模版类`array` 
+
+如果你需要的是长度固定的数组，也可以使用`array`，它也位于命名空间`std`中。注意，`array`对象的长度是固定的
+
+```c++
+#include <array>
+using namespace std;
+
+array<int, 5> ai; // create array of 5 int
+array<double, 4> ad = {1.2, 1.3, 1.4, 1.5};
+```
+
+### 字符串[todo]
+
+> Todo
 
 ### `struct` 结构类型
 
+> [struct 结构](https://wangdoc.com/clang/struct)
+
 ### `union `联合类型
 
+> [Union 结构](https://wangdoc.com/clang/union)
+
 ### `Enum` 枚举类型
+
+```c++
+enum Colors { 
+  RED, 
+  GREEN, 
+  BLUE
+};
+
+Colors color;
+```
 
 ## 预处理器
 
