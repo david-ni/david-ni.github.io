@@ -307,7 +307,29 @@ Colors color;
 
 ## 函数
 
+### 语法
+
+```c++
+return_type function_name( parameter list )
+{
+   body of the function
+}
+```
+
 ## 类
+
+### 语法
+
+```c++
+[template-spec]
+class [ms-decl-spec] [tag [: base-list ]]
+{
+   member-list
+} [declarators];
+[ class ] tag declarators;
+```
+
+
 
 ## 运算符重载
 
